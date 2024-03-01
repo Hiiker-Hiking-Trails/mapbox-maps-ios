@@ -38,6 +38,26 @@ public struct PointAnnotation: Annotation, Equatable {
         set { gestureHandlers.value.longPress = newValue }
     }
     
+    /// Handles drag gesture beging.
+    ///
+    /// Should return `true` if the gesture is handled, or `false` to propagate it to the annotations or layers below.
+    public var dragBeginHandler: ((MapContentGestureContext) -> Bool)? {
+        get { gestureHandlers.value.dragBegin }
+        set { gestureHandlers.value.dragBegin = newValue }
+    }
+    
+    /// Handles drag gesture changes.
+    public var dragChangedHandler: (() -> Void)? {
+        get { gestureHandlers.value.dragChanged }
+        set { gestureHandlers.value.dragChanged = newValue }
+    }
+    
+    /// Handles drag gesture ended.
+    public var dragEndHandler: (() -> Void)? {
+        get { gestureHandlers.value.dragEnd }
+        set { gestureHandlers.value.dragEnd = newValue }
+    }
+    
     /// JSON convertible properties associated with the annotation, used to enrich Feature GeoJSON `properties["custom_data"]` field.
     public var customData = JSONObject()
 
