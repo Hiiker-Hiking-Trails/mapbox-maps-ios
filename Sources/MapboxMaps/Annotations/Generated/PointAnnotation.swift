@@ -70,6 +70,29 @@ public struct PointAnnotation: Annotation, Equatable {
         get { gestureHandlers.value.dragEnd }
         set { gestureHandlers.value.dragEnd = newValue }
     }
+    
+    public var hiikerDragBeginHandler: ((MapContentGestureContext) -> Void)? {
+        get { gestureHandlers.value.hiikerDragBegin }
+        set { gestureHandlers.value.hiikerDragBegin = newValue }
+    }
+
+    /// The handler is invoked when annotation is being dragged.
+    ///
+    /// The handler receives the `annotation` and the `context` parameters of the gesture:
+    /// - Use the `annotation` inout property to update properties of the annotation.
+    /// - The `context` contains position of the gesture.
+    public var hiikerDragChangeHandler: (() -> Void)? {
+        get { gestureHandlers.value.hiikerDragChange }
+        set { gestureHandlers.value.hiikerDragChange = newValue }
+    }
+
+    /// The handler receives the `annotation` and the `context` parameters of the gesture:
+    /// - Use the `annotation` inout property to update properties of the annotation.
+    /// - The `context` contains position of the gesture.
+    public var hiikerDragEndHandler: (() -> Void)? {
+        get { gestureHandlers.value.hiikerDragEnd }
+        set { gestureHandlers.value.hiikerDragEnd = newValue }
+    }
 
     /// JSON convertible properties associated with the annotation, used to enrich Feature GeoJSON `properties["custom_data"]` field.
     public var customData = JSONObject()

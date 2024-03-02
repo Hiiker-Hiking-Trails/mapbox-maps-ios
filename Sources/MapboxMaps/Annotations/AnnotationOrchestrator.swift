@@ -40,6 +40,9 @@ struct AnnotationGestureHandlers<T: Annotation> {
     var dragBegin: ((inout T, MapContentGestureContext) -> Bool)?
     var dragChange: ((inout T, MapContentGestureContext) -> Void)?
     var dragEnd: ((inout T, MapContentGestureContext) -> Void)?
+    var hiikerDragBegin: ((MapContentGestureContext) -> Void)?
+    var hiikerDragChange: (() -> Void)?
+    var hiikerDragEnd: (() -> Void)?
 }
 
 /// A delegate that is called when a tap is detected on an annotation (or on several of them).

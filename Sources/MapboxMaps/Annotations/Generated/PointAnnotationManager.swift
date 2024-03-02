@@ -711,8 +711,8 @@ public class PointAnnotationManager: AnnotationManagerInternal {
             guard dragAllowed else {
                 return false
             }
-
             draggedAnnotationIndex = idx
+            draggedAnnotations[idx].hiikerDragBeginHandler?(context)
             return true
         }
 
@@ -728,6 +728,7 @@ public class PointAnnotationManager: AnnotationManagerInternal {
             let annotation = mainAnnotations.remove(at: idx)
             draggedAnnotations.append(annotation)
             draggedAnnotationIndex = draggedAnnotations.endIndex - 1
+            draggedAnnotations[idx].hiikerDragBeginHandler?(context)
             return true
         }
 
@@ -756,13 +757,14 @@ public class PointAnnotationManager: AnnotationManagerInternal {
         }
 
         draggedAnnotations[draggedAnnotationIndex].point = point
-
+        draggedAnnotations[draggedAnnotationIndex].hiikerDragChangeHandler?()
         callDragHandler(\.dragChangeHandler, context: context)
     }
 
     func handleDragEnd(context: MapContentGestureContext) {
         guard !isSwiftUI else { return }
         callDragHandler(\.dragEndHandler, context: context)
+        draggedAnnotations[draggedAnnotationIndex!].hiikerDragEndHandler?()
         draggedAnnotationIndex = nil
     }
 
