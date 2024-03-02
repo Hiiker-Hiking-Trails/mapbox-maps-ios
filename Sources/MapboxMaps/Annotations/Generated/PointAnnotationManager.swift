@@ -728,7 +728,7 @@ public class PointAnnotationManager: AnnotationManagerInternal {
             let annotation = mainAnnotations.remove(at: idx)
             draggedAnnotations.append(annotation)
             draggedAnnotationIndex = draggedAnnotations.endIndex - 1
-            draggedAnnotations[idx].hiikerDragBeginHandler?(context)
+            draggedAnnotations[draggedAnnotationIndex!].hiikerDragBeginHandler?(context)
             return true
         }
 
